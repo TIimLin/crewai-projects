@@ -1,0 +1,36 @@
+identify_flights_and_hotels:
+  description: >-
+    為一趟前往 {destination} 的 {duration} 旅遊，搜尋最佳的航班與飯店。
+    旅客的興趣是：{interests}。出發日期為 {start_date}，返回日期為 {end_date}。
+    使用網路搜尋工具來尋找三個航班選項和三個飯店選項。
+  expected_output: >-
+    一個包含三個航班選項和三個飯店選項的列表，每個選項都包含詳細的資訊，如價格、航空公司、飯店星級等。
+  agent: expert_travel_agent
+
+plan_itinerary:
+  description: >-
+    根據使用者的興趣 {interests}，為這趟在 {destination} 為期 {duration}
+    的旅程規劃一份詳細的每日行程。
+    使用網路搜尋工具尋找必訪景點、三家評價高的特色餐廳，和一個特殊的在地體驗。
+    對於其中一家你最推薦的餐廳，請使用網站讀取工具訪問其官方網站，並在行程中加入它的特色菜或營業時間等詳細資訊。
+  expected_output: >-
+    一份詳細的每日旅遊行程，包含景點、餐廳和在地體驗的建議。
+    行程應以 Markdown 格式呈現，並確保內容豐富且引人入勝。
+  agent: local_expert
+  context:
+    - identify_flights_and_hotels
+
+create_travel_guide:
+  description: >-
+    你的最終任務是將前面步驟提供的所有旅遊資訊，
+    合併成一個完整的 Markdown 格式字串。
+    然後，你 **必須** 使用 `File Writer Tool` 這個工具將字串寫入檔案。
+    這個工具只接受兩個參數：'file_path' 和 'text'。
+    請將 `file_path` 的值設定為 '/app/旅遊手冊.md'，
+    並將你合併好的完整 Markdown 字串作為 `text` 參數的值。
+  expected_output: >-
+    一個簡單的確認訊息，說明檔案已寫入。例如："已成功將旅遊手冊儲存至 /app/旅遊手冊.md"。
+  agent: travel_concierge
+  context:
+    - plan_itinerary
+    - identify_flights_and_hotels
