@@ -145,13 +145,28 @@
             行程應以 Markdown 格式呈現，並確保內容豐富且引人入勝。
 
         create_travel_guide:
-          description: >-
+          description: |
             你的最終任務是將前面步驟提供的所有旅遊資訊，
-            合併成一個完整的 Markdown 格式字串。
+            合併成一個完整的 Markdown 格式化後的字串。
             然後，你 **必須** 使用 `File Writer Tool` 這個工具將字串寫入檔案。
-            這個工具只接受兩個參數：'file_path' 和 'text'。
-            請將 `file_path` 的值設定為 '/app/my_travel_planner/旅遊手冊.md'，
-            並將你合併好的完整 Markdown 字串作為 `text` 參數的值。
+
+            **工具使用說明：**
+            `File Writer Tool` 只接受兩個參數：
+            1. `file_path` (字串): 這是檔案的完整儲存路徑，**必須**設定為 '/app/my_travel_planner/旅遊手冊.md'。
+            2. `text` (字串): 這是你整合好的完整 Markdown 內容。
+
+            **重要提示：**
+            你的工具呼叫格式看起來必須像這樣：
+            ```json
+            {
+              "tool_name": "File Writer Tool",
+              "tool_args": {
+                "file_path": "/app/my_travel_planner/旅遊手冊.md",
+                "text": "你的完整 Markdown 內容..."
+              }
+            }
+            ```
+            **絕對不要**使用 `filename` 或 `directory` 這樣的參數，工具是看不懂的。
           expected_output: >-
             一個簡單的確認訊息，說明檔案已寫入。例如："已成功將旅遊手冊儲存至 /app/my_travel_planner/旅遊手冊.md"。
         ```
