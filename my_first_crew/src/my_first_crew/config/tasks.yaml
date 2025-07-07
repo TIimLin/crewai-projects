@@ -21,31 +21,15 @@ plan_itinerary:
     - identify_flights_and_hotels
 
 create_travel_guide:
-  description: |
-    你的最終任務是將前面步驟提供的所有旅遊資訊，
-    合併成一個完整的 Markdown 格式化後的字串。
-    然後，你 **必須** 使用 `File Writer Tool` 這個工具將字串寫入檔案。
-
-    **工具使用說明：**
-    `File Writer Tool` 只接受兩個參數：
-    1. `file_path` (字串): 這是檔案的完整儲存路徑，**必須**設定為 '/app/旅遊手冊.md'。
-    2. `text` (字串): 這是你整合好的完整 Markdown 內容。
-
-    **重要提示：**
-    你的工具呼叫格式看起來必須像這樣：
-    ```json
-    {
-      "tool_name": "File Writer Tool",
-      "tool_args": {
-        "file_path": "/app/旅遊手冊.md",
-        "text": "你的完整 Markdown 內容..."
-      }
-    }
-    ```
-    **絕對不要**使用 `filename` 或 `directory` 這樣的參數，工具是看不懂的。
+  description: >-
+    將前面步驟提供的所有旅遊資訊，
+    合併成一份內容豐富、引人入勝且格式為 Markdown 的完整旅遊手冊。
+    手冊應包含航班、飯店、每日行程、景點介紹和餐廳建議。
   expected_output: >-
-    一個簡單的確認訊息，說明檔案已寫入。例如："已成功將旅遊手冊儲存至 /app/旅遊手冊.md"。
+    一份完整的 Markdown 格式旅遊手冊，包含所有規劃好的旅遊細節。
   agent: travel_concierge
   context:
     - plan_itinerary
     - identify_flights_and_hotels
+  output_file: '旅遊手冊.md'
+
