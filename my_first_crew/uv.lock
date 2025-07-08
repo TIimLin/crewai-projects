@@ -2246,13 +2246,17 @@ version = "0.1.0"
 source = { editable = "." }
 dependencies = [
     { name = "crewai", extra = ["tools"] },
+    { name = "fastapi" },
     { name = "pypdf" },
+    { name = "uvicorn", extra = ["standard"] },
 ]
 
 [package.metadata]
 requires-dist = [
     { name = "crewai", extras = ["tools"], specifier = ">=0.140.0,<1.0.0" },
+    { name = "fastapi" },
     { name = "pypdf" },
+    { name = "uvicorn", extras = ["standard"] },
 ]
 
 [[package]]

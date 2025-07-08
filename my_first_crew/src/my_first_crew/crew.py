@@ -77,8 +77,7 @@ class MyFirstCrew():
         return Task(
             config=self.tasks_config['create_travel_guide'],
             agent=self.travel_concierge(),
-            context=[self.plan_itinerary(), self.identify_flights_and_hotels()],
-            output_file='output/旅遊手冊.md'
+            context=[self.plan_itinerary(), self.identify_flights_and_hotels()]
         )
 
     @crew
