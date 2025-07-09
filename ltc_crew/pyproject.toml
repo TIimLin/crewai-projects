@@ -1,0 +1,25 @@
+[project]
+name = "ltc_crew"
+version = "0.1.0"
+description = "A crew to provide long-term care consultation based on Taiwanese healthcare models."
+authors = [{ name = "Your Name", email = "you@example.com" }]
+requires-python = ">=3.10,<3.14"
+dependencies = [
+    "crewai>=0.35.0,<1.0.0",
+    "crewai-tools>=0.5.1,<1.0.0",
+    "fastapi",
+    "uvicorn",
+    "requests",
+    "beautifulsoup4",
+    "langchain-google-genai"
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.crewai]
+type = "crew"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/ltc_crew"] 
