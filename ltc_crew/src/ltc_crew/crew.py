@@ -55,14 +55,6 @@ class LtcCrew():
         )
 
     @agent
-    def chief_medical_advisor(self) -> Agent:
-        return Agent(
-            config=self.agents_config['chief_medical_advisor'],
-            allow_delegation=True,
-            verbose=True
-        )
-
-    @agent
     def reporting_specialist(self) -> Agent:
         return Agent(
             config=self.agents_config['reporting_specialist'],
